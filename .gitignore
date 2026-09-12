@@ -1,0 +1,8 @@
+# xcodegen generates this from project.yml — run `xcodegen generate` to recreate it
+*.xcodeproj
+
+# Xcode
+DerivedData/
+xcuserdata/
+*.xcuserstate
+.DS_Store

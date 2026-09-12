@@ -1,0 +1,80 @@
+name: LifeDashboard
+options:
+  bundleIdPrefix: uk.co.daniyalzia
+  deploymentTarget:
+    iOS: "17.0"
+configs:
+  Debug: debug
+  Release: release
+targets:
+  LifeDashboard:
+    type: application
+    platform: iOS
+    sources:
+      - path: LifeDashboard
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.co.daniyalzia.LifeDashboard
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+    info:
+      path: LifeDashboard/Info.plist
+      properties:
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        CFBundleDisplayName: "Life Dashboard"
+        NSCalendarsFullAccessUsageDescription: "Life Dashboard reads your calendars to show today's agenda."
+        NSFaceIDUsageDescription: "Life Dashboard uses Face ID to keep your boards locked, since they can hold sensitive info."
+        NSUbiquitousContainers:
+          iCloud.uk.co.daniyalzia.LifeDashboard:
+            NSUbiquitousContainerIsDocumentScopePublic: true
+            NSUbiquitousContainerSupportedFolderLevels: One
+            NSUbiquitousContainerName: "Life Dashboard"
+        CFBundleURLTypes:
+          - CFBundleURLName: uk.co.daniyalzia.LifeDashboard.deeplink
+            CFBundleURLSchemes:
+              - lifedashboard
+    entitlements:
+      path: LifeDashboard/LifeDashboard.entitlements
+      properties:
+        com.apple.developer.icloud-container-identifiers:
+          - iCloud.uk.co.daniyalzia.LifeDashboard
+        com.apple.developer.icloud-services:
+          - CloudKit
+          - CloudDocuments
+        com.apple.developer.ubiquity-container-identifiers:
+          - iCloud.uk.co.daniyalzia.LifeDashboard
+        com.apple.security.application-groups:
+          - group.uk.co.daniyalzia.LifeDashboard
+    dependencies:
+      - target: LifeDashboardWidgetExtension
+        embed: true
+
+  LifeDashboardWidgetExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: LifeDashboardWidget
+      - path: LifeDashboard/Models/Board.swift
+      - path: LifeDashboard/Models/BoardItem.swift
+      - path: LifeDashboard/Theme.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.co.daniyalzia.LifeDashboard.Widget
+        PRODUCT_NAME: LifeDashboardWidget
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+    info:
+      path: LifeDashboardWidget/Info.plist
+      properties:
+        CFBundleDisplayName: "Life Dashboard"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: LifeDashboardWidget/LifeDashboardWidget.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.uk.co.daniyalzia.LifeDashboard
