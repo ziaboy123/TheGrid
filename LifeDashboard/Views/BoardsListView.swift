@@ -46,7 +46,7 @@ struct BoardsListView: View {
                     .onMove(perform: moveBoards)
                 }
                 .scrollContentBackground(.hidden)
-                .background(ClaudeTheme.background)
+                .background(GridBackground())
                 .onChange(of: router.pendingBoardUUID) { _, newValue in
                     guard let uuid = newValue else { return }
                     collapsedBoardIDs.remove(uuid)

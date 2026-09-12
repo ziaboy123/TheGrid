@@ -18,20 +18,22 @@ targets:
         CODE_SIGN_STYLE: Automatic
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     info:
       path: LifeDashboard/Info.plist
       properties:
         UILaunchScreen: {}
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
-        CFBundleDisplayName: "Life Dashboard"
-        NSCalendarsFullAccessUsageDescription: "Life Dashboard reads your calendars to show today's agenda."
-        NSFaceIDUsageDescription: "Life Dashboard uses Face ID to keep your boards locked, since they can hold sensitive info."
+        CFBundleDisplayName: "The Grid"
+        NSCalendarsFullAccessUsageDescription: "The Grid reads your calendars to show today's agenda."
+        NSFaceIDUsageDescription: "The Grid uses Face ID to keep your boards locked, since they can hold sensitive info."
         NSUbiquitousContainers:
           iCloud.uk.co.daniyalzia.LifeDashboard:
             NSUbiquitousContainerIsDocumentScopePublic: true
             NSUbiquitousContainerSupportedFolderLevels: One
-            NSUbiquitousContainerName: "Life Dashboard"
+            NSUbiquitousContainerName: "The Grid"
         CFBundleURLTypes:
           - CFBundleURLName: uk.co.daniyalzia.LifeDashboard.deeplink
             CFBundleURLSchemes:
@@ -70,7 +72,7 @@ targets:
     info:
       path: LifeDashboardWidget/Info.plist
       properties:
-        CFBundleDisplayName: "Life Dashboard"
+        CFBundleDisplayName: "The Grid"
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:

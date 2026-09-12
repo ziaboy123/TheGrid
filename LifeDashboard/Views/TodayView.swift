@@ -49,7 +49,7 @@ struct TodayView: View {
                 .listRowBackground(ClaudeTheme.surface)
             }
             .scrollContentBackground(.hidden)
-            .background(ClaudeTheme.background)
+            .background(GridBackground())
             .navigationTitle("Today")
         }
         .sheet(isPresented: $isAddingMailAccount) {

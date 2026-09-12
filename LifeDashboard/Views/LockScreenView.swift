@@ -9,7 +9,7 @@ struct LockScreenView: View {
                 .font(.system(size: 48))
                 .foregroundStyle(ClaudeTheme.accent)
 
-            Text("Life Dashboard is locked")
+            Text("The Grid is locked")
                 .font(.headline)
                 .foregroundStyle(ClaudeTheme.textPrimary)
 
@@ -28,7 +28,7 @@ struct LockScreenView: View {
             .disabled(lockScreenService.isAuthenticating)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(ClaudeTheme.background.ignoresSafeArea())
+        .background(GridBackground())
         .task {
             await lockScreenService.authenticate()
         }

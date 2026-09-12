@@ -67,7 +67,7 @@ struct BoardsWidgetEntryView: View {
                     Text("No boards yet")
                         .font(.subheadline.weight(.medium))
                         .foregroundStyle(ClaudeTheme.textPrimary)
-                    Text("Create one in Life Dashboard.")
+                    Text("Create one in The Grid.")
                         .font(.caption)
                         .foregroundStyle(ClaudeTheme.textSecondary)
                 }
@@ -103,7 +103,27 @@ struct BoardsWidgetEntryView: View {
         }
         .padding(16)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .containerBackground(ClaudeTheme.background, for: .widget)
+        .containerBackground(for: .widget) {
+            ZStack {
+                ClaudeTheme.background
+                Canvas { context, size in
+                    var path = Path()
+                    var x: CGFloat = 0
+                    while x <= size.width {
+                        path.move(to: CGPoint(x: x, y: 0))
+                        path.addLine(to: CGPoint(x: x, y: size.height))
+                        x += 28
+                    }
+                    var y: CGFloat = 0
+                    while y <= size.height {
+                        path.move(to: CGPoint(x: 0, y: y))
+                        path.addLine(to: CGPoint(x: size.width, y: y))
+                        y += 28
+                    }
+                    context.stroke(path, with: .color(ClaudeTheme.border.opacity(0.3)), lineWidth: 1)
+                }
+            }
+        }
     }
 }
 

@@ -78,7 +78,7 @@ enum NotificationService {
 
         for day in schedule where day.isEnabled {
             let content = UNMutableNotificationContent()
-            content.title = "Life Dashboard"
+            content.title = "The Grid"
             content.body = "Good morning — check today's agenda and mail."
             content.sound = .default
 

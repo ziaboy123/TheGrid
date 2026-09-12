@@ -52,11 +52,11 @@ struct SettingsView: View {
                 } header: {
                     Text("iCloud Backup")
                 } footer: {
-                    Text("Backs up your boards to iCloud Drive → Life Dashboard. iCloud and Gmail mail accounts are backed up by email/provider only — never your password.")
+                    Text("Backs up your boards to iCloud Drive → The Grid. iCloud and Gmail mail accounts are backed up by email/provider only — never your password.")
                 }
             }
             .scrollContentBackground(.hidden)
-            .background(ClaudeTheme.background)
+            .background(GridBackground())
             .navigationTitle("Settings")
             .alert("iCloud Backup", isPresented: backupResultBinding, presenting: backupResultMessage) { _ in
                 Button("OK") { backupResultMessage = nil }
@@ -94,7 +94,7 @@ struct SettingsView: View {
     private func backUpNow() {
         do {
             try BackupService.backup(boards: boards, mailAccounts: mailAccounts)
-            backupResultMessage = "Backed up \(boards.count) board\(boards.count == 1 ? "" : "s") to iCloud Drive → Life Dashboard."
+            backupResultMessage = "Backed up \(boards.count) board\(boards.count == 1 ? "" : "s") to iCloud Drive → The Grid."
         } catch {
             backupResultMessage = error.localizedDescription
         }

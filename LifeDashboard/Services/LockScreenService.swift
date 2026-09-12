@@ -16,7 +16,7 @@ final class LockScreenService {
         defer { isAuthenticating = false }
 
         let context = LAContext()
-        let reason = "Unlock Life Dashboard"
+        let reason = "Unlock The Grid"
 
         do {
             let success = try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason)
