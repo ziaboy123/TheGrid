@@ -183,6 +183,7 @@ struct BoardsListView: View {
         .tag(board.uuid)
         .swipeActions(edge: .trailing) {
             Button(role: .destructive) {
+                UINotificationFeedbackGenerator().notificationOccurred(.warning)
                 board.deletedAt = .now
             } label: {
                 Label("Delete", systemImage: "trash")
@@ -198,6 +199,7 @@ struct BoardsListView: View {
             .tint(.blue)
 
             Button {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 board.isPinned.toggle()
             } label: {
                 Label(board.isPinned ? "Unpin" : "Pin", systemImage: board.isPinned ? "pin.slash" : "pin")
@@ -384,6 +386,7 @@ private struct ItemRow: View {
             } else if item.isChecklist && item.isChecked {
                 HStack {
                     Button {
+                        UISelectionFeedbackGenerator().selectionChanged()
                         item.isChecked.toggle()
                     } label: {
                         Image(systemName: "checkmark.square.fill")
@@ -398,6 +401,7 @@ private struct ItemRow: View {
                 HStack(alignment: .top) {
                     if item.isChecklist {
                         Button {
+                            UISelectionFeedbackGenerator().selectionChanged()
                             item.isChecked.toggle()
                         } label: {
                             Image(systemName: "square")

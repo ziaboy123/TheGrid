@@ -26,7 +26,7 @@ struct LifeDashboardApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LockGateView()
+            AppRootView()
                 .preferredColorScheme(.dark)
                 .tint(ClaudeTheme.accent)
         }
@@ -66,6 +66,20 @@ struct LifeDashboardApp: App {
             let destination = URL(fileURLWithPath: newStoreURL.path + suffix)
             guard fileManager.fileExists(atPath: source.path) else { continue }
             try? fileManager.copyItem(at: source, to: destination)
+        }
+    }
+}
+
+private struct AppRootView: View {
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+
+    var body: some View {
+        if hasCompletedOnboarding {
+            LockGateView()
+        } else {
+            OnboardingView {
+                hasCompletedOnboarding = true
+            }
         }
     }
 }

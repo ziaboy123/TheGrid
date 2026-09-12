@@ -51,6 +51,10 @@ struct TodayView: View {
             .scrollContentBackground(.hidden)
             .background(GridBackground())
             .navigationTitle("Today")
+            .refreshable {
+                calendarService.refreshTodaysEvents()
+                refreshMailAccounts()
+            }
         }
         .sheet(isPresented: $isAddingMailAccount) {
             AddMailAccountView()
