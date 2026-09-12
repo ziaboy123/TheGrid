@@ -11,27 +11,30 @@ struct RootTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
+            MonthCalendarView()
+                .tabItem { Label("Calendar", systemImage: "calendar") }
+                .tag(0)
             TodayView()
                 .tabItem { Label("Today", systemImage: "sun.max") }
-                .tag(0)
+                .tag(1)
             BoardsListView()
                 .tabItem { Label("Boards", systemImage: "square.grid.2x2") }
-                .tag(1)
+                .tag(2)
             SettingsView()
                 .tabItem { Label("Settings", systemImage: "gearshape") }
-                .tag(2)
+                .tag(3)
         }
         .onAppear {
             // Covers the cold-launch case: the deep link fired while the
             // lock screen owned .onOpenURL (RootTabView didn't exist yet),
             // so pendingBoardUUID may already be set by the time we mount.
             if router.pendingBoardUUID != nil {
-                selectedTab = 1
+                selectedTab = 2
             }
         }
         .onChange(of: router.pendingBoardUUID) { _, newValue in
             if newValue != nil {
-                selectedTab = 1
+                selectedTab = 2
             }
         }
     }
