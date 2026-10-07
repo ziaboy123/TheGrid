@@ -16,6 +16,7 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: uk.co.daniyalzia.LifeDashboard
         CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: HY76B9WTCP
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
@@ -41,13 +42,19 @@ targets:
     entitlements:
       path: LifeDashboard/LifeDashboard.entitlements
       properties:
-        com.apple.developer.icloud-container-identifiers:
-          - iCloud.uk.co.daniyalzia.LifeDashboard
-        com.apple.developer.icloud-services:
-          - CloudKit
-          - CloudDocuments
-        com.apple.developer.ubiquity-container-identifiers:
-          - iCloud.uk.co.daniyalzia.LifeDashboard
+        # iCloud (container/services/ubiquity) is deliberately omitted here —
+        # Apple's free "Personal Team" signing does not support the iCloud
+        # capability at all, which blocks provisioning for the whole app, not
+        # just the backup feature. BackupService already handles a missing
+        # ubiquity container gracefully (shows "iCloud Drive isn't available
+        # yet" instead of crashing), so backup just goes inert on-device
+        # until this is signed with a real (paid) Apple Developer Program
+        # team. Re-add these three keys then if backup should work on-device:
+        #   com.apple.developer.icloud-container-identifiers:
+        #     - iCloud.uk.co.daniyalzia.LifeDashboard
+        #   com.apple.developer.icloud-services: [CloudKit, CloudDocuments]
+        #   com.apple.developer.ubiquity-container-identifiers:
+        #     - iCloud.uk.co.daniyalzia.LifeDashboard
         com.apple.security.application-groups:
           - group.uk.co.daniyalzia.LifeDashboard
     dependencies:
@@ -67,6 +74,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: uk.co.daniyalzia.LifeDashboard.Widget
         PRODUCT_NAME: LifeDashboardWidget
         CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: HY76B9WTCP
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1"
     info:
