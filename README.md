@@ -44,3 +44,7 @@ open LifeDashboard.xcodeproj
 Personal project, actively used day to day. Weather (needs a paid Apple
 Developer account for WeatherKit) and real CloudKit sync are the two
 deliberately deferred pieces — everything else on the roadmap is built.
+
+## Licence
+
+MIT — see [LICENSE](LICENSE).
